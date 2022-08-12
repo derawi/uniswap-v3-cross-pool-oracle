@@ -1,10 +1,13 @@
 require('@nomiclabs/hardhat-ethers')
 require('@nomiclabs/hardhat-etherscan')
 require('hardhat-local-networks-config-plugin')
+require('dotenv').config()
+
+console.log(process.env.RPC_URL_MAINNET)
 
 module.exports = {
   solidity: {
-    version: '0.7.6',
+    version: '0.8.16',
     settings: {
       optimizer: {
         enabled: true,
@@ -13,9 +16,13 @@ module.exports = {
     },
   },
   networks: {
-    hardhat: {},
+    hardhat: {
+      forking: {
+        url: process.env.RPC_URL_MAINNET,
+      },
+    },
     mainnet: {
-      url: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      url: process.env.RPC_URL_MAINNET,
     },
   },
   etherscan: {

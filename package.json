@@ -7,13 +7,14 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@uniswap/v3-core": "^1.0.0"
+    "@uniswap/v3-core": "^1.0.2-solc-0.8-simulate"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-etherscan": "^2.1.2",
+    "dotenv": "^16.0.1",
     "ethers": "^5.2.0",
-    "hardhat": "^2.2.1",
+    "hardhat": "^2.10.1",
     "hardhat-local-networks-config-plugin": "^0.0.5",
     "inquirer": "^6.5.2",
     "prettier": "^2.3.0",

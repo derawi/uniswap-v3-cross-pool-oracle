@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity =0.7.6;
+pragma solidity ^0.8.16;
 
 import './libraries/OracleLibrary.sol';
 import './libraries/PoolAddress.sol';
@@ -97,10 +97,10 @@ contract UniswapV3CrossPoolOracle {
         address pool =
             PoolAddress.computeAddress(uniswapV3Factory, PoolAddress.getPoolKey(_tokenIn, _tokenOut, _poolFee));
         // Leave twapTick as a int256 to avoid solidity casting
-        int256 twapTick = OracleLibrary.consult(pool, _twapPeriod);
+        (int24 twapTick, ) = OracleLibrary.consult(pool, _twapPeriod);
         return
             OracleLibrary.getQuoteAtTick(
-                int24(twapTick), // can assume safe being result from consult()
+                twapTick, // can assume safe being result from consult()
                 SafeUint128.toUint128(_amountIn),
                 _tokenIn,
                 _tokenOut
