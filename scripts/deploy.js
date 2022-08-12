@@ -47,6 +47,11 @@ async function deploy() {
 async function verify(uniV3Oracle) {
   console.log()
   console.log('Verifying on Etherscan...')
+
+  //Skip Etherscan verification for local testing
+  if (hre.network.name === 'localhost') return true
+  if (hre.network.name === 'hardhat') return true
+
   await hre.run('verify:verify', {
     address: uniV3Oracle.address,
     constructorArguments: [config.uniswapV3Factory, config.weth, config.defaultFee],
