@@ -1,3 +1,4 @@
+const { ethers } = require('hardhat')
 const hre = require('hardhat')
 const inquirer = require('inquirer')
 
@@ -26,7 +27,7 @@ async function confirm() {
       type: 'confirm',
       name: 'confirmed',
       message: 'Proceed?',
-      default: false,
+      default: true,
     },
   ])
   console.log()
@@ -46,12 +47,15 @@ async function deploy() {
 
 async function verify(uniV3Oracle) {
   console.log()
-  console.log('Verifying on Etherscan...')
 
   //Skip Etherscan verification for local testing
-  if (hre.network.name === 'localhost') return true
-  if (hre.network.name === 'hardhat') return true
+  if (hre.network.name === 'localhost' || hre.network.name === 'hardhat') {
+    console.log('Verifying Locally...')
+    const output = await uniV3Oracle.assetToEth('0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 1000000000, 1800)
+    return
+  }
 
+  console.log('Verifying on Etherscan...')
   await hre.run('verify:verify', {
     address: uniV3Oracle.address,
     constructorArguments: [config.uniswapV3Factory, config.weth, config.defaultFee],
