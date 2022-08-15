@@ -1,6 +1,10 @@
-# Uniswap V3 "Cross Pool" Oracle
+# Uniswap V3 "Cross Pool" Oracle - Arbitrum
 
 > 🚨 Security status: unaudited
+
+- The contracts are ported to solidity v0.8.
+- Addresses are changed being compatible with Arbitrum mainnet
+- Updated hardhat to a custom fork by the arbitrum devs for being compatible with the Arbitrum Nitro tx format.
 
 A UniswapV3 TWAP oracle with the ability to query asset prices across an intermediate liquidity pool (e.g. `WBTC -> WETH -> USDC`).
 
@@ -19,7 +23,7 @@ All other exposed functionality default to the stated defaults above.
 
 ## Usage
 
-Useful to know for all price queries:
+Useful to know for all price queries:◊
 
 - Reverts if `twapPeriod` is `0`
 - Reverts if the `twapPeriod` too large for the underlying pool's history. In this case, you will have to increase the history stored by the pool by calling `UniswapV3Pool#increaseObservationCardinalityNext()` (see whitepaper section 5.1).
