@@ -14,7 +14,7 @@
     "@nomiclabs/hardhat-etherscan": "^3.1.0",
     "dotenv": "^16.0.1",
     "ethers": "^5.2.0",
-    "hardhat": "^2.10.1",
+    "hardhat": "npm:@gzeoneth/hardhat@^2.10.1-gzeon-c8fe47dd4",
     "hardhat-local-networks-config-plugin": "^0.0.5",
     "inquirer": "^6.5.2",
     "prettier": "^2.3.0",
